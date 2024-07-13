@@ -3,83 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>빠른전적검색</title>
+    <link rel="icon" href="favicon.ico"/> 
+    <title>커스텀 매치 전적검색</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            background-color: #9DA38F;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            font-family: 'Gothic A1', sans-serif; /* 기본 폰트 설정 */
+            position: relative;
         }
-
-        .container {
-            background-color: #ffffff;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .background-text {
+            position: absolute;
+            top: 10%;
+            font-size: 3em;
+            font-weight: 700;
+            color: white;
             text-align: center;
-            width: 80%;
-            max-width: 600px;
-        }
-
-        .container h1 {
-            color: #333333;
-            margin-bottom: 20px;
-        }
-
-        .input-field {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            font-size: 16px;
-            min-height: 200px; 
-            max-height: 400px;
-            overflow: hidden;
-            resize: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            z-index: 0; /* 배경 글씨가 박스 뒤에 위치하도록 설정 */
         }
-
-        .input-field:focus {
-            border-color: #666666;
-            box-shadow: 0 0 5px rgba(102, 102, 102, 0.5);
-        }
-
-        .submit-button {
-            background-color: #333333;
-            color: #ffffff;
-            padding: 10px 20px;
+        .container {
+            margin-top: 20px; /* 박스를 살짝 아래로 내림 */
+            width: 45%;
+            background-color: #F5F6F4;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
+            overflow: hidden;
+            box-sizing: border-box; /* 패딩을 포함하여 크기 계산 */
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.09), 
+                        0 3px 2px rgba(0, 0, 0, 0.15); /* 두 개의 그림자 추가 */
+            z-index: 1; /* 박스가 배경 글씨 앞에 위치하도록 설정 */
+        }
+        textarea {
+            width: 100%;
+            height: auto;
+            min-height: 20em;
+            max-height: 30em;
+            resize: none;
+            border: none;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            padding: 20px 50px;
+            font-size: 16px;
+            overflow: hidden;
+            outline: none;
+            box-sizing: border-box; /* 패딩을 포함하여 크기 계산 */
+            background-color: #F5F6F4 !important; /* 배경색을 명확히 설정 */
+            color: #2A2D25; /* 텍스트 색상 설정 */
+        }
+        .divider {
+            width: calc(100% - 60px); /* 양쪽 끝을 30px씩 줄임 */
+            height: 1.2px; /* 두께를 4px로 설정 */
+            background-color: #BEC5C5; /* 선의 색상 */
+            border-radius: 2px; /* 양 끝을 둥글게 */
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+        button {
+            width: 100%;
+            padding: 20px 0;
+            border: none;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            background-color: #F5F6F4; /* 버튼 배경색을 #F5F6F4로 설정 */
+            color: #2A2D25; /* 텍스트 색상 */
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            outline: none;
+            font-family: 'Gothic A1', sans-serif; /* 버튼 폰트 */
+            font-weight: 700; /* 굵은 폰트 */
         }
-
-        .submit-button:hover {
-            background-color: #555555;
-            transform: translateY(-2px);
+        button:hover {
+            background-color: #F5F6F4; /* 호버 시에도 색상이 변하지 않도록 설정 */
         }
     </style>
 </head>
 <body>
+    <div class="background-text">커스텀 매치<br>전적검색</div>
     <div class="container">
-        <h1>커스텀 랭크 전적검색</h1>
-        <textarea class="input-field"></textarea>
-        <button class="submit-button">검색</button>
+        <textarea id="dynamic-textarea" spellcheck="false" oninput="adjustHeight()"></textarea>
+        <div class="divider"></div>
+        <button onclick="submitText()">검색</button>
     </div>
 
     <script>
-        const textarea = document.querySelector('.input-field');
+        function adjustHeight() {
+            const textarea = document.getElementById('dynamic-textarea');
+            textarea.style.height = 'auto'; // 높이를 자동으로 설정하여 내용에 맞게 조정
+            textarea.style.height = Math.min(textarea.scrollHeight, 30 * 1.2 * 16) + 'px'; // 최대 30줄 크기로 제한
+        }
 
-        textarea.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
+        // 초기 높이 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            adjustHeight();
         });
+
+        // 버튼 클릭 시 텍스트를 제출하는 함수
+        function submitText() {
+            const textarea = document.getElementById('dynamic-textarea');
+            alert('입력된 텍스트: ' + textarea.value);
+        }
     </script>
 </body>
 </html>
