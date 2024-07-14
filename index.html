@@ -91,6 +91,15 @@
             font-size: 14px;
             font-weight: 500;
         }
+        /* 작은 화면(모바일)에서의 스타일링 */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%; /* 작은 화면에서는 상자 너비를 90%로 설정 */
+            }
+            .background-text {
+                font-size: 2em; /* 작은 화면에서는 배경 글씨 크기를 줄임 */
+            }
+        }
     </style>
 </head>
 <body>
