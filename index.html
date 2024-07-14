@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Gothic A1', sans-serif; /* 기본 폰트 설정 */
+            font-family: 'Gothic A1', sans-serif;
             position: relative;
         }
         .background-text {
@@ -26,21 +26,21 @@
             color: white;
             text-align: center;
             width: 100%;
-            z-index: 0; /* 배경 글씨가 박스 뒤에 위치하도록 설정 */
+            z-index: 0;
         }
         .container {
-            margin-top: 20px; /* 박스를 살짝 아래로 내림 */
+            margin-top: 20px;
             width: 45%;
             background-color: #F5F6F4;
             border: none;
             border-radius: 50px;
             overflow: hidden;
-            box-sizing: border-box; /* 패딩을 포함하여 크기 계산 */
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             box-shadow: 0 6px 6px rgba(0, 0, 0, 0.09), 
-                        0 3px 2px rgba(0, 0, 0, 0.15); /* 두 개의 그림자 추가 */
-            z-index: 1; /* 박스가 배경 글씨 앞에 위치하도록 설정 */
+                        0 3px 2px rgba(0, 0, 0, 0.15);
+            z-index: 1;
         }
         textarea {
             width: 100%;
@@ -55,16 +55,16 @@
             font-size: 16px;
             overflow: hidden;
             outline: none;
-            box-sizing: border-box; /* 패딩을 포함하여 크기 계산 */
-            background-color: #F5F6F4 !important; /* 배경색을 명확히 설정 */
-            color: #2A2D25; /* 텍스트 색상 설정 */
+            box-sizing: border-box;
+            background-color: #F5F6F4 !important;
+            color: #2A2D25;
         }
         .divider {
-            width: calc(100% - 60px); /* 양쪽 끝을 30px씩 줄임 */
-            height: 1.2px; /* 두께를 4px로 설정 */
-            background-color: #BEC5C5; /* 선의 색상 */
-            border-radius: 2px; /* 양 끝을 둥글게 */
-            margin: 0 auto; /* 가운데 정렬 */
+            width: calc(100% - 60px);
+            height: 1.2px;
+            background-color: #BEC5C5;
+            border-radius: 2px;
+            margin: 0 auto;
         }
         button {
             width: 100%;
@@ -72,16 +72,16 @@
             border: none;
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
-            background-color: #F5F6F4; /* 버튼 배경색을 #F5F6F4로 설정 */
-            color: #2A2D25; /* 텍스트 색상 */
+            background-color: #F5F6F4;
+            color: #2A2D25;
             font-size: 16px;
             cursor: pointer;
             outline: none;
-            font-family: 'Gothic A1', sans-serif; /* 버튼 폰트 */
-            font-weight: 700; /* 굵은 폰트 */
+            font-family: 'Gothic A1', sans-serif;
+            font-weight: 700;
         }
         button:hover {
-            background-color: #E0E3DD; /* 호버 시에도 색상이 변하지 않도록 설정 */
+            background-color: #E0E3DD;
         }
         .top-left-text {
             position: absolute;
@@ -91,23 +91,28 @@
             font-size: 13px;
             font-weight: 500;
         }
-        .result-text {
+        .bottom-middle-text {
             position: absolute;
-            top: 30%;
-            font-size: 1.5em;
-            font-weight: 500;
+            bottom: 10px;
+            text-align: justify;
             color: white;
-            text-align: start;
-            width: 60%;
-            z-index: 0;
+            font-size: 16px;
+            font-weight: 500;
         }
-        /* 작은 화면(모바일)에서의 스타일링 */
+        .link {
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+        }
+        .link:hover {
+            color: black;
+        }
         @media (max-width: 600px) {
             .container {
-                width: 90%; /* 작은 화면에서는 상자 너비를 90%로 설정 */
+                width: 90%;
             }
             .background-text {
-                font-size: 2em; /* 작은 화면에서는 배경 글씨 크기를 줄임 */
+                font-size: 2em;
             }
             .top-left-text {
                 font-size: 10px;
@@ -117,36 +122,31 @@
 </head>
 <body>
     <div class="background-text">커스텀 매치<br>전적검색</div>
-    <div class="container" id="container">
+    <div class="container">
         <textarea id="dynamic-textarea" spellcheck="false" oninput="adjustHeight()"></textarea>
         <div class="divider"></div>
         <button onclick="submitText()">검색</button>
     </div>
-    <div class="top-left-text">Copyright 2024. 1ettuce<br><br>Discord 1ettuce.<br>Ubisoft Puko.</div>
+    <div class="top-left-text">Copyright 2024. 1ettuce</div>
+    <div class="bottom-middle-text">
+        <a href="https://r6s-custom-match.notion.site/R6S-0377f8ae7ca94aa6baee51bc551e2e0f" target="_blank" class="link">도움말</a> | 
+        <a href="https://www.google.com" target="_blank" class="link">버그 제보</a>
+</div>
 
     <script>
         function adjustHeight() {
             const textarea = document.getElementById('dynamic-textarea');
-            textarea.style.height = 'auto'; // 높이를 자동으로 설정하여 내용에 맞게 조정
-            textarea.style.height = Math.min(textarea.scrollHeight, 30 * 1.2 * 16) + 'px'; // 최대 30줄 크기로 제한
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 30 * 1.2 * 16) + 'px';
         }
 
-        // 초기 높이 설정
         document.addEventListener('DOMContentLoaded', function() {
             adjustHeight();
         });
 
-        // 버튼 클릭 시 텍스트를 제출하는 함수
         function submitText() {
             const textarea = document.getElementById('dynamic-textarea');
-            const container = document.getElementById('container');
-            container.style.display = 'none'; // 입력창 박스를 숨김
-
-            const resultText = document.createElement('div');
-            resultText.className = 'result-text';
-            resultText.innerHTML = textarea.value.replace(/\n/g, '<br>'); // 입력된 텍스트를 배경에 추가
-
-            document.body.appendChild(resultText);
+            alert('입력된 텍스트: ' + textarea.value);
         }
     </script>
 </body>
