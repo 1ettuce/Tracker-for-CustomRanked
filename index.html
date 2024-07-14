@@ -81,15 +81,25 @@
             font-weight: 700; /* 굵은 폰트 */
         }
         button:hover {
-            background-color: #F5F6F4; /* 호버 시에도 색상이 변하지 않도록 설정 */
+            background-color: #E0E3DD; /* 호버 시에도 색상이 변하지 않도록 설정 */
         }
         .top-left-text {
             position: absolute;
             top: 10px;
             left: 20px;
             color: white;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
+        }
+        .result-text {
+            position: absolute;
+            top: 30%;
+            font-size: 1.5em;
+            font-weight: 500;
+            color: white;
+            text-align: start;
+            width: 60%;
+            z-index: 0;
         }
         /* 작은 화면(모바일)에서의 스타일링 */
         @media (max-width: 600px) {
@@ -107,12 +117,12 @@
 </head>
 <body>
     <div class="background-text">커스텀 매치<br>전적검색</div>
-    <div class="container">
+    <div class="container" id="container">
         <textarea id="dynamic-textarea" spellcheck="false" oninput="adjustHeight()"></textarea>
         <div class="divider"></div>
         <button onclick="submitText()">검색</button>
     </div>
-    <div class="top-left-text">ⓒ 2024 Puko<br><br>Discord 1ettuce.<br>Ubisoft Puko.</div>
+    <div class="top-left-text">Copyright 2024. 1ettuce<br><br>Discord 1ettuce.<br>Ubisoft Puko.</div>
 
     <script>
         function adjustHeight() {
@@ -129,7 +139,14 @@
         // 버튼 클릭 시 텍스트를 제출하는 함수
         function submitText() {
             const textarea = document.getElementById('dynamic-textarea');
-            alert('입력된 텍스트: ' + textarea.value);
+            const container = document.getElementById('container');
+            container.style.display = 'none'; // 입력창 박스를 숨김
+
+            const resultText = document.createElement('div');
+            resultText.className = 'result-text';
+            resultText.innerHTML = textarea.value.replace(/\n/g, '<br>'); // 입력된 텍스트를 배경에 추가
+
+            document.body.appendChild(resultText);
         }
     </script>
 </body>
