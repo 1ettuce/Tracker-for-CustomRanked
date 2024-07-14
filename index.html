@@ -6,6 +6,7 @@
     <link rel="icon" href="favicon.ico"/> 
     <title>커스텀 매치 전적검색</title>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #9DA38F;
@@ -82,6 +83,14 @@
         button:hover {
             background-color: #F5F6F4; /* 호버 시에도 색상이 변하지 않도록 설정 */
         }
+        .top-left-text {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +100,7 @@
         <div class="divider"></div>
         <button onclick="submitText()">검색</button>
     </div>
+    <div class="top-left-text">ⓒ 2024 Puko<br><br>Discord 1ettuce.<br>Ubisoft Puko.</div>
 
     <script>
         function adjustHeight() {
